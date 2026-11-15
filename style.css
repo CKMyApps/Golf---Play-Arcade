@@ -1,0 +1,84 @@
+:root {
+  color-scheme: dark;
+  --bg: #050e1e;
+  --panel: #062735;
+  --line: #3bb9ac;
+  --mint: #72f7b4;
+  --ink: #effbf8;
+  --muted: #add0d2;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  background: var(--bg);
+  color: var(--ink);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; }
+.shell { width: min(100%, 1160px); padding: clamp(12px, 4vw, 42px); }
+.panel {
+  padding: clamp(18px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: repeating-linear-gradient(90deg, transparent 0 74px, #45d7cc0d 74px 76px), var(--panel);
+}
+h1, h2, h3, p { margin: 0; }
+h1, h2 { text-wrap: balance; }
+h1 { font-size: clamp(3.4rem, 12vw, 8rem); line-height: 0.95; letter-spacing: -.10em; color: var(--mint); margin-bottom: 8px; }
+h2 { font-size: clamp(1.03rem, 3.6vw, 1.75rem); }
+h3 { font-size: 1rem; }
+button, select, .button {
+  font: inherit;
+  color: var(--ink);
+  min-height: 44px;
+  background: #0a3542;
+  border: 1px solid #69cab77a;
+  border-radius: 8px;
+  padding: 9px 16px;
+}
+button, .button { cursor: pointer; font-weight: 750; text-align: center; }
+.button { display: grid; place-items: center; text-decoration: none; }
+button:disabled { opacity: .45; cursor: default; }
+button:hover:enabled, a.button:hover { border-color: var(--mint); }
+.primary { color: #062431; background: var(--mint); border-color: var(--mint); }
+.primary:hover:enabled { background: #a0ffce; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.layout { display: grid; grid-template-columns: 1fr 1fr; gap: 12%; align-items: center; }
+.menu-content, .compact, form { display: grid; gap: 12px; }
+.menu-content { max-width: 330px; }
+small { color: var(--muted); margin-top: 10px; letter-spacing: .13em; }
+.menu-course { min-height: 270px; display: grid; justify-items: center; align-content: center; gap: 16px; }
+.menu-course span { font-size: 4rem; line-height: 1; color: var(--mint); }
+.menu-course i { border-left: 4px dotted var(--mint); height: 100px; opacity: .78; transform: rotate(8deg); }
+.menu-course b { color: white; }
+.compact { max-width: 550px; margin: auto; }
+.compact h2 { margin-bottom: 10px; }
+output { color: var(--mint); }
+input[type=range], input[type=checkbox] { accent-color: var(--mint); }
+input[type=range] { display: block; width: 100%; min-height: 32px; margin: 0; }
+input[type=checkbox] { width: 22px; height: 22px; }
+.switch { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+.credits { border-top: 1px solid #69cab77a; padding-top: 12px; line-height: 1.5; }
+.credits a { color: var(--mint); }
+.credits p { margin-top: 5px; color: var(--muted); }
+.play { text-align: center; }
+.game-heading { display: grid; gap: 8px; }
+#shot-status, #storage-note, #round-score { color: var(--muted); }
+#course { display: block; width: min(100%, 440px); height: auto; max-height: 35vh; object-fit: contain; margin: 10px auto; }
+#message { min-height: 1.5em; padding-inline: 4px; line-height: 1.5; }
+.controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 3vw, 22px); max-width: 620px; margin: 14px auto; text-align: left; }
+.controls label { min-width: 0; display: block; font-size: .9rem; }
+.controls select { width: 100%; margin-top: 4px; }
+#swing, #next { min-width: 120px; text-transform: uppercase; }
+.nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.nav button { background: transparent; }
+table { border-collapse: collapse; text-align: left; width: 100%; font-variant-numeric: tabular-nums; }
+td, th { border-bottom: 1px solid #69cab73f; padding: 6px; }
+#storage-note { margin-top: 12px; font-size: .9rem; }
+@media (max-width: 590px) {
+  .layout { grid-template-columns: 1fr; gap: 5px; }
+  .menu-content { width: 100%; margin-inline: auto; }
+  .menu-course { min-height: 145px; gap: 8px; }
+  .menu-course span { font-size: 2.6rem; }
+  .menu-course i { height: 53px; }
+  .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .controls label:first-child { grid-column: 1 / -1; }
+}

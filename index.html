@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050e1e">
+  <meta name="description" content="Play an 18-hole retro golf round from CK My Apps.">
+  <title>GOLF · CK My Apps</title>
+  <link rel="icon" href="./icon.png">
+  <link rel="apple-touch-icon" href="./icon.png">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./round.js"></script>
+  <script defer src="./game.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <section id="menu" class="panel layout">
+      <div class="menu-content">
+        <h1 tabindex="-1">GOLF</h1>
+        <button class="primary" data-screen="setup">New Game</button>
+        <button id="load" disabled>Load Game</button>
+        <button data-screen="settings">Settings</button>
+        <small>CK MY APPS</small>
+      </div>
+      <div class="menu-course" aria-hidden="true"><span>⚑</span><i></i><b>●</b></div>
+    </section>
+    <section id="setup" class="panel compact" hidden>
+      <h2 tabindex="-1">New Game</h2>
+      <form id="setup-form">
+        <label for="handicap">Handicap <output id="handicap-value" for="handicap">15</output></label>
+        <input id="handicap" type="range" min="0" max="30" value="15">
+        <label for="weakness">Weakness</label>
+        <select id="weakness">
+          <option value="hook">Hook</option><option value="slice" selected>Slice</option>
+          <option value="distance">Short distance</option><option value="bunker">Bunker shots</option>
+          <option value="putting">Putting</option>
+        </select>
+        <button class="primary" type="submit">Tee Off</button>
+      </form>
+      <button data-screen="menu">Back</button>
+    </section>
+    <section id="settings" class="panel compact" hidden>
+      <h2 tabindex="-1">Settings</h2>
+      <label class="switch" for="sounds">Sound Effects<input id="sounds" type="checkbox"></label>
+      <label class="switch" for="music">Menu Music<input id="music" type="checkbox"></label>
+      <a class="button" href="https://www.paypal.com/donate/?hosted_button_id=UR3QDVNHJ22GA" target="_blank" rel="noopener noreferrer">Donate</a>
+      <div class="credits"><h3>Credits</h3><p>Created by Christos A. Kazantzoglou</p><p><a href="https://ckmyapps.substack.com/" target="_blank" rel="noopener noreferrer">CK My Apps</a></p><p>Inspired by <cite>Golf</cite> from <cite>Creative Computing</cite>. Steve North adapted the original game, whose author is unknown.</p></div>
+      <button data-screen="menu">Back</button>
+    </section>
+    <section id="play" class="panel play" hidden>
+      <div class="game-heading">
+        <h2 id="hole-title" tabindex="-1"></h2>
+        <p id="shot-status"></p>
+      </div>
+      <canvas id="course" width="420" height="320" aria-hidden="true"></canvas>
+      <p id="message" aria-live="polite"></p>
+      <div id="shot-controls">
+        <div class="controls">
+          <label>Club<select id="club"></select></label>
+          <label for="power">Power <output id="power-value" for="power"></output><input id="power" type="range" min="1" max="100" value="75"></label>
+          <label for="aim">Aim <output id="aim-value" for="aim"></output><input id="aim" type="range" min="-55" max="55" value="0"></label>
+        </div>
+        <button id="swing" class="primary">Swing</button>
+      </div>
+      <button id="next" class="primary" hidden>Next Hole</button>
+      <div class="nav"><button data-screen="scorecard">Scorecard</button><button data-screen="menu">Menu</button></div>
+    </section>
+    <section id="scorecard" class="panel compact" hidden>
+      <h2 id="score-title" tabindex="-1">Scorecard</h2>
+      <p id="round-score"></p>
+      <table><thead><tr><th scope="col">Hole</th><th scope="col">Par</th><th scope="col">Strokes</th></tr></thead><tbody id="scores"></tbody></table>
+      <button id="score-back" class="primary">Back to Round</button>
+    </section>
+    <p id="storage-note" role="status" hidden></p>
+  </main>
+</body>
+</html>
